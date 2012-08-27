@@ -76,3 +76,6 @@
 [submodule "skel/modules/doc"]
 	path = skel/modules/doc
 	url = git://github.com/perl6/doc
+[submodule "skel/rakudo-debugger"]
+	path = skel/rakudo-debugger
+	url = git://github.com/jnthn/rakudo-debugger
