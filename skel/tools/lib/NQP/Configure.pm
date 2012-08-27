@@ -30,6 +30,9 @@ our @required_nqp_files = qw(
 our $nqp_git = 'git://github.com/perl6/nqp.git';
 our $par_git = 'git://github.com/parrot/parrot.git';
 
+our $nqp_push = 'git@github.com:perl6/nqp.git';
+our $par_push = 'git@github.com:parrot/parrot.git';
+
 sub sorry {
     my @msg = @_;
     die join("\n", '', '===SORRY!===', @msg, "\n");
@@ -188,12 +191,15 @@ sub git_checkout {
     my $repo = shift;
     my $dir  = shift;
     my $checkout = shift;
+    my $pushurl = shift;
     my $pwd = cwd();
 
     # get an up-to-date repository
     if (! -d $dir) {
         system_or_die('git', 'clone', $repo, $dir);
         chdir($dir);
+        system('git', 'config', 'remote.origin.pushurl', $pushurl)
+            if defined $pushurl;
     }
     else {
         chdir($dir);
@@ -210,7 +216,7 @@ sub git_checkout {
     if (open(my $GIT, '-|', "git describe --tags")) {
         $git_describe = <$GIT>;
         close($GIT);
-        chomp $git_describe;
+        chomp $git_describe if $git_describe;
     }
     chdir($pwd);
     $git_describe;
@@ -242,7 +248,6 @@ sub gen_nqp {
     my $gen_parrot  = $options{'gen-parrot'};
     my $prefix      = $options{'prefix'} || cwd().'/install';
     my $startdir    = cwd();
-    my $nqpdir      = "$startdir/nqp";
 
     my $PARROT_REVISION = 'nqp/tools/build/PARROT_REVISION';
 
@@ -262,20 +267,15 @@ sub gen_nqp {
 
     my $nqp_have = $config{'nqp::version'} || '';
     my $nqp_ok   = $nqp_have && cmp_rev($nqp_have, $nqp_want) >= 0;
-    if ($gen_nqp && -d $gen_nqp) {
-        $nqpdir = $gen_nqp;
-        print "Building NQP from source in $nqpdir\n";
-    }
-    elsif ($gen_nqp) {
-        my $nqp_repo = git_checkout($nqp_git, 'nqp', $gen_nqp);
+    if ($gen_nqp) {
+        my $nqp_repo = git_checkout($nqp_git, 'nqp', $gen_nqp, $nqp_push);
         $nqp_ok = $nqp_have eq $nqp_repo;
     }
     elsif (!$nqp_ok || defined $gen_parrot && !-f $PARROT_REVISION) {
-        git_checkout($nqp_git, 'nqp', $nqp_want);
+        git_checkout($nqp_git, 'nqp', $nqp_want, $nqp_push);
     }
 
     if (defined $gen_parrot) {
-        $PARROT_REVISION = "$nqpdir/tools/build/PARROT_REVISION";
         my ($par_want) = split(' ', slurp($PARROT_REVISION));
         $with_parrot = gen_parrot($par_want, %options, prefix => $prefix);
         %config = read_parrot_config($with_parrot);
@@ -293,7 +293,7 @@ sub gen_nqp {
     my @cmd = ($^X, 'Configure.pl', "--with-parrot=$with_parrot",
                "--make-install");
     print "Building NQP ...\n";
-    chdir($nqpdir);
+    chdir("$startdir/nqp");
     print "@cmd\n";
     system_or_die(@cmd);
     chdir($startdir);
@@ -310,30 +310,25 @@ sub gen_parrot {
     my @opts       = @{ $options{'parrot-option'} || [] };
     push @opts, "--optimize";
     my $startdir   = cwd();
-    my $parrotdir  = "$startdir/parrot";
 
     my $par_exe  = "$options{'prefix'}/bin/parrot$exe";
     my %config   = read_parrot_config($par_exe);
 
     my $par_have = $config{'parrot::git_describe'} || '';
     my $par_ok   = $par_have && cmp_rev($par_have, $par_want) >= 0;
-    if ($gen_parrot && -d $gen_parrot) {
-        $parrotdir = $gen_parrot;
-        print "Building Parrot from source in $parrotdir\n";
-    }
-    elsif ($gen_parrot) {
-        my $par_repo = git_checkout($par_git, 'parrot', $gen_parrot);
+    if ($gen_parrot) {
+        my $par_repo = git_checkout($par_git, 'parrot', $gen_parrot, $par_push);
         $par_ok = $par_have eq $par_repo;
     }
     elsif (!$par_ok) {
-        git_checkout($par_git, 'parrot', $par_want);
+        git_checkout($par_git, 'parrot', $par_want, $par_push);
     }
 
     if ($par_ok) {
         print "$par_exe is Parrot $par_have.\n";
         return $par_exe;
     }
-    chdir($parrotdir) or die $!;
+    chdir("$startdir/parrot") or die $!;
     if (-f 'Makefile') {
         %config = read_parrot_config('config_lib.pir');
         my $make = $config{'parrot::make'};
