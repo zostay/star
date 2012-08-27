@@ -18,45 +18,10 @@ RAKUDO      = rakudo-$(RAKUDO_VER)
 RAKUDO_TGZ  = $(RAKUDO).tar.gz
 RAKUDO_DIR  = $(DISTDIR)/$(RAKUDO)
 
-
-## If you add a module here, don't forget to update MODULES
-## in skel/tools/build/Makefile.in to actually install it
-MODULES_DIR = $(DISTDIR)/modules
-MODULES = \
-  git://github.com/masak/ufo \
-  git://github.com/jnthn/zavolaj \
-  git://github.com/masak/xml-writer \
-  git://github.com/moritz/svg \
-  git://github.com/moritz/Math-RungeKutta \
-  git://github.com/moritz/svg-plot \
-  git://github.com/moritz/Math-Model \
-  git://github.com/tadzik/perl6-Term-ANSIColor \
-  git://github.com/jnthn/test-mock \
-  git://github.com/perlpilot/Grammar-Profiler-Simple \
-  git://github.com/jnthn/grammar-debugger \
-  git://github.com/moritz/json \
-  git://github.com/snarkyboojum/Perl6-MIME-Base64 \
-  git://github.com/cosimo/perl6-digest-md5 \
-  git://github.com/tadzik/perl6-File-Tools \
-  git://github.com/tadzik/panda \
-  git://github.com/supernovus/perl6-http-status \
-  git://github.com/supernovus/perl6-http-easy \
-  git://github.com/tadzik/Template-Mojo \
-  git://github.com/tadzik/Bailador \
-  git://github.com/perl6/DBIish \
-  git://github.com/ihrd/uri \
-  git://github.com/cosimo/perl6-lwp-simple \
-  git://github.com/bbkr/jsonrpc \
-  git://github.com/perl6/Pod-To-HTML \
-  git://github.com/perl6/doc \
-
 DISTTARGETS = \
   $(PARROT_DIR) \
   $(NQP_DIR) \
   $(RAKUDO_DIR) \
-  $(MODULES_DIR) \
-  star-patches \
-  $(DISTDIR)/MANIFEST \
 
 dist: version_check $(DISTDIR) $(DISTTARGETS)
 
@@ -88,15 +53,6 @@ $(RAKUDO_DIR): $(RAKUDO_TGZ)
 	
 $(RAKUDO_TGZ):
 	wget --no-check-certificate https://github.com/downloads/rakudo/rakudo/$(RAKUDO_TGZ)
-
-$(MODULES_DIR): always
-	mkdir -p $(MODULES_DIR)
-	cd $(MODULES_DIR); for repo in $(MODULES); do git clone $$repo.git; done
-	# cd $(MODULES_DIR)/yaml-pm6; git checkout rakudo-star-1
-	cd $(MODULES_DIR)/panda; git checkout 04b67556b56edd0c4599fc20c9c7e49a292b0cc1
-
-star-patches:
-	[ ! -f build/$(VERSION)-patch.pl ] || DISTDIR=$(DISTDIR) perl build/$(VERSION)-patch.pl
 
 $(DISTDIR)/MANIFEST:
 	touch $(DISTDIR)/MANIFEST
