@@ -1,0 +1,78 @@
+[submodule "skel/modules/ufo"]
+	path = skel/modules/ufo
+	url = git://github.com/masak/ufo
+[submodule "skel/modules/zavolaj"]
+	path = skel/modules/zavolaj
+	url = git://github.com/jnthn/zavolaj
+[submodule "skel/modules/xml-writer"]
+	path = skel/modules/xml-writer
+	url = git://github.com/masak/xml-writer
+[submodule "skel/modules/svg"]
+	path = skel/modules/svg
+	url = git://github.com/moritz/svg
+[submodule "skel/modules/Math-RungeKutta"]
+	path = skel/modules/Math-RungeKutta
+	url = git://github.com/moritz/Math-RungeKutta
+[submodule "skel/modules/svg-plot"]
+	path = skel/modules/svg-plot
+	url = git://github.com/moritz/svg-plot
+[submodule "skel/modules/Math-Model"]
+	path = skel/modules/Math-Model
+	url = git://github.com/moritz/Math-Model
+[submodule "skel/modules/perl6-Term-ANSIColor"]
+	path = skel/modules/perl6-Term-ANSIColor
+	url = git://github.com/tadzik/perl6-Term-ANSIColor
+[submodule "skel/modules/test-mock"]
+	path = skel/modules/test-mock
+	url = git://github.com/jnthn/test-mock
+[submodule "skel/modules/Grammar-Profiler-Simple"]
+	path = skel/modules/Grammar-Profiler-Simple
+	url = git://github.com/perlpilot/Grammar-Profiler-Simple
+[submodule "skel/modules/grammar-debugger"]
+	path = skel/modules/grammar-debugger
+	url = git://github.com/jnthn/grammar-debugger
+[submodule "skel/modules/json"]
+	path = skel/modules/json
+	url = git://github.com/moritz/json
+[submodule "skel/modules/Perl6-MIME-Base64"]
+	path = skel/modules/Perl6-MIME-Base64
+	url = git://github.com/snarkyboojum/Perl6-MIME-Base64
+[submodule "skel/modules/perl6-digest-md5"]
+	path = skel/modules/perl6-digest-md5
+	url = git://github.com/cosimo/perl6-digest-md5
+[submodule "skel/modules/perl6-File-Tools"]
+	path = skel/modules/perl6-File-Tools
+	url = git://github.com/tadzik/perl6-File-Tools
+[submodule "skel/modules/panda"]
+	path = skel/modules/panda
+	url = git://github.com/tadzik/panda
+[submodule "skel/modules/perl6-http-status"]
+	path = skel/modules/perl6-http-status
+	url = git://github.com/supernovus/perl6-http-status
+[submodule "skel/modules/perl6-http-easy"]
+	path = skel/modules/perl6-http-easy
+	url = git://github.com/supernovus/perl6-http-easy
+[submodule "skel/modules/Template-Mojo"]
+	path = skel/modules/Template-Mojo
+	url = git://github.com/tadzik/Template-Mojo
+[submodule "skel/modules/Bailador"]
+	path = skel/modules/Bailador
+	url = git://github.com/tadzik/Bailador
+[submodule "skel/modules/DBIish"]
+	path = skel/modules/DBIish
+	url = git://github.com/perl6/DBIish
+[submodule "skel/modules/uri"]
+	path = skel/modules/uri
+	url = git://github.com/ihrd/uri
+[submodule "skel/modules/perl6-lwp-simple"]
+	path = skel/modules/perl6-lwp-simple
+	url = git://github.com/cosimo/perl6-lwp-simple
+[submodule "skel/modules/jsonrpc"]
+	path = skel/modules/jsonrpc
+	url = git://github.com/bbkr/jsonrpc
+[submodule "skel/modules/Pod-To-HTML"]
+	path = skel/modules/Pod-To-HTML
+	url = git://github.com/perl6/Pod-To-HTML
+[submodule "skel/modules/doc"]
+	path = skel/modules/doc
+	url = git://github.com/perl6/doc
