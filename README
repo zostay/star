@@ -1,6 +1,6 @@
-This is Rakudo Star, a useful, usable Rakudo Perl 6 production distribution.
+This is Rakudo Star, a useful, usable Raku production distribution.
 
-This is the 2019.03 release of Rakudo Star for the 6.d version of Perl 6.
+This is the 2019.11 release of Rakudo Star for the 6.d version of Raku.
 
 Rakudo Star is Copyright (C) 2010 - 2019 by the Rakudo Star Team.
 
@@ -15,7 +15,7 @@ for copyright and licensing information of those components.
 
 Overview
 --------
-The Rakudo Perl 6 compiler can target MoarVM and the JVM. Rakudo Star fully
+The Rakudo Raku compiler can target MoarVM and the JVM. Rakudo Star fully
 supports MoarVM; not all modules work on the JVM at present.  You can choose
 to build and install Rakudo for one or more of these virtual machines at
 configure time.
@@ -59,10 +59,10 @@ You can also build for all backends:
     $ perl Configure.pl --backend=moar,jvm --gen-moar
 
 Note that --gen-moar automatically builds a MoarVM for you, and implies
---gen-nqp, which builds NQP, a subset of Perl 6 that is used to implement
+--gen-nqp, which builds NQP, a subset of Raku that is used to implement
 Rakudo.
 
-Configured this way, one or more Perl 6 executables and selected Perl 6
+Configured this way, one or more Raku executables and selected Raku
 modules will be installed into the install/ subdirectory, which resides inside
 the source archive directory. Running make install will *not* install anything
 into /usr/local. If you want to change this behavior, specify the install
@@ -88,7 +88,7 @@ nmake or using gcc and gmake as bundled with Strawberry Perl.  In the latter
 case use cmd.exe rather than bash as a shell.
 
 Note that possible platform-specific errata may be covered under:
-https://perl6.org/downloads/
+https://raku.org/downloads/
 
 Setting up the environment
 --------------------------
@@ -98,7 +98,7 @@ directory or system-wide "${INSTDIR}/bin" directory (if you used the
 --prefix option) to your PATH environment variable.
 
 Note also that other executable scripts such as "p6doc" will be installed
-under "${INSTDIR}/share/perl6/site/bin" so you also need to add that to the
+under "${INSTDIR}/share/raku/site/bin" so you also need to add that to the
 PATH for development convenience.
 
 You will have to append the %PATH% in a similar way under Windows. You
@@ -107,24 +107,24 @@ may have to use Windows type directory path separators.
 You will be reminded of the two additions to the PATH by a welcome message
 after the source build completes.
 
-Once Rakudo Star is installed (and assuming perl6 is in your PATH), you can
-run Perl 6 programs by doing:
+Once Rakudo Star is installed (and assuming raku is in your PATH), you can
+run Raku programs by doing:
 
-    $ perl6 hello.p6
+    $ raku hello.raku
 
 If the Rakudo compiler is invoked without an explicit script to run, it
-enters a small interactive mode that allows Perl 6 statements to be executed
+enters a small interactive mode that allows Raku statements to be executed
 from the command line.
 
 
-Running the Perl 6 test suite
+Running the Raku test suite
 -----------------------------
 Entering "make rakudo-test" will run a small test suite that comes bundled
 with Rakudo.  This is a simple suite of tests, designed to make sure that the
 Rakudo compiler is basically working and that it's capable of running a simple
 test harness.
 
-Running "make rakudo-spectest" will run the Perl 6 specification test suite
+Running "make rakudo-spectest" will run the Raku specification test suite
 ("roast") that was bundled with the Rakudo compiler release.
 
 Running "make modules-test" will run the test suites of any installed modules.
@@ -136,34 +136,34 @@ issue with test suite versioning.  This can be ignored and it's hoped this will
 be fixed shortly.
 
 
-Perl 6 Documentation
+Raku Documentation
 --------------------
-The official documentation site is https://docs.perl6.org/
+The official documentation site is https://docs.raku.org/
 
 This distribution also contains documentation in the docs/ directory:
 
- docs/cheatsheet.txt             —   Perl 6 cheat sheet
- docs/2015-spw-perl6-course.pdf  —   A short Perl 6 course
- docs/perl6intro.pdf             —   Recent snapshot of https://perl6intro.com/
+ docs/cheatsheet.txt             —   Raku cheat sheet
+ docs/2015-spw-perl6-course.pdf  —   A short Raku course
+ docs/perl6intro.pdf             —   Recent snapshot of https://raku.guide/
  docs/announce/                  —   Detailed release announcements
 
-https://perl6intro.com/ is available in multiple languages, French, German,
+https://raku.guide/ is available in multiple languages, French, German,
 Japanese, Spanish, Portuguese, Dutch, Bulgarian, Chinese, Italian, Turkish,
 Indonesian and Russian at the time of writing.
 
 
-Installing Perl 6 Modules
+Installing Raku Modules
 -------------------------
 zef is a module installer bundled with Rakudo Star.
 
 See https://github.com/ugexe/zef for zef documentation.
 
-A list of modules available in the "ecosystem" is at https://modules.perl6.org/
+A list of modules available in the "ecosystem" is at https://modules.raku.org/
 
 Git is useful for zef.
 
 When upgrading between versions of perl 6 it may be necessary to remove
-~/.perl6 and/or ~/.zef due to a possible toolchain bug.  If you see this issue
+~/.raku and/or ~/.zef due to a possible toolchain bug.  If you see this issue
 please email details as suggested in the "Reporting Bugs" section below.
 
 
@@ -171,27 +171,26 @@ Where to get help or answers to questions
 -----------------------------------------
 'p6doc faq' will display a version of the FAQ.
 
-Also see https://faq.perl6.org/
+Also see https://faq.raku.org/
 
 There are several mailing lists, IRC channels, and wikis available with help
-for Perl 6 and Rakudo.
+for Raku and Rakudo.
 
-A friendly IRC channel for new starter questions is irc.freenode.net/#perl6
+A friendly IRC channel for new starter questions is irc.freenode.net/#raku
 
 The Rakudo and MoarVM development teams tend to hang out on IRC a fair bit, on
-irc.freenode.net/#perl6-dev and irc.freenode.net/#moarvm, respectively.
+irc.freenode.net/#raku-dev and irc.freenode.net/#moarvm, respectively.
 
 IRC tends to be busier than the mailing lists but if you have a question about
-Perl 6 syntax or the right way to approach a problem using Perl 6, you could
+Raku syntax or the right way to approach a problem using Raku, you could
 use the perl6-users@perl.org mailing list.  This list is primarily for the
-people who want to use Perl 6 to write programs, as opposed to those who are
-implementing or developing the Perl 6 language itself.
+people who want to use Raku to write programs, as opposed to those who are
+implementing or developing the Raku language itself.
 
 Questions about the Rakudo compiler can go to perl6-compiler@perl.org.
 
-The https://perl6.org/ website contains a great many links to resources for Perl
-6 development, and is generally the starting point for information about Perl
-6.
+The https://raku.org/ website contains a great many links to resources for Raku
+development, and is generally the starting point for information about Raku.
 
 Rakudo's official web site is https://rakudo.org/, where you can
 find useful information for developers and users alike.
@@ -199,12 +198,12 @@ find useful information for developers and users alike.
 
 Reporting bugs
 --------------
-Bug reports about Rakudo Star or the Perl 6 specification should be sent to
+Bug reports about Rakudo Star or the Raku specification should be sent to
 rakudobug@perl.org with the moniker [BUG] (including the brackets) at the
 start of the subject so that it gets appropriately tagged in the RT system
 (https://rt.perl.org/rt3/).  Please include or attach any sample source code
 that exhibits the bug, and include either the release name/date or the git
-commit identifier. You find this information in the output from "perl6
+commit identifier. You find this information in the output from "raku
 --version".  There's no need to Cc: the perl6-compiler mailing list, as the RT
 system will handle this on its own.
 

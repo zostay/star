@@ -11,7 +11,7 @@ SDKROOT_DIR        = @sdkroot@
 SYSROOT_DIR        = @sysroot@
 
 STAR_BIN_DIR = $(PREFIX_DIR)/bin
-SITE_BIN_DIR = $(PREFIX_DIR)/share/perl6/site/bin
+SITE_BIN_DIR = $(PREFIX_DIR)/share/raku/site/bin
 
 EXE           = @exe@
 BAT           = @bat@
@@ -21,15 +21,15 @@ RM_F          = $(PERL) -MExtUtils::Command -e rm_f
 MKPATH        = $(PERL) -MExtUtils::Command -e mkpath
 CHMOD         = $(PERL) -MExtUtils::Command -e chmod
 
-PERL6_J_EXE      = perl6-j$(BAT)
-PERL6_J_LANG_DIR = $(PREFIX_DIR)/share/perl6
+PERL6_J_EXE      = raku-j$(BAT)
+PERL6_J_LANG_DIR = $(PREFIX_DIR)/share/raku
 PERL6_J_INSTALL  = $(STAR_BIN_DIR)/$(PERL6_J_EXE)
 
-PERL6_M_EXE      = perl6-m$(BAT)
-PERL6_M_LANG_DIR = $(PREFIX_DIR)/share/perl6
+PERL6_M_EXE      = raku-m$(BAT)
+PERL6_M_LANG_DIR = $(PREFIX_DIR)/share/raku
 PERL6_M_INSTALL  = $(STAR_BIN_DIR)/$(PERL6_M_EXE)
 
-PERL6_EXE        = perl6$(EXE)
+PERL6_EXE        = raku$(EXE)
 
 MODULES          = modules/MODULES.txt
 
